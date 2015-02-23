@@ -66,6 +66,8 @@ class Path {
     public function getPath(array $array)
     {
         $path = $this->_generate($array);
+        
+        return $this->_path;
     }
 
 
