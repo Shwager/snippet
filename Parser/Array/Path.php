@@ -80,10 +80,10 @@ class Path {
                 if (null !== $previous) {
                     $path = $previous . DIRECTORY_SEPARATOR . $key;
                     $this->_path[] = $path;
-                    $this->iterate($value, $path);
+                    $this->_generate($value, $path);
                 } else {
                     $this->_path[] = $key;
-                    $this->iterate($value, $key);
+                    $this->_generate($value, $key);
                 }
             } else {
                 if (null !== $previous) {
