@@ -9,7 +9,7 @@
  * @copyright    Copyright (c) 2015 Stefan Schwager
  */
 
-namespace ShwagerGenerator\Parser\Array;
+namespace Shwager\Parser;
 
 /**
  * Generate an array with a full path
@@ -20,16 +20,16 @@ namespace ShwagerGenerator\Parser\Array;
  * @author       Stefan Schwager
  * @copyright    Copyright (c) 2015 Stefan Schwager
  */
-class Path {
-
-    private $_path = array();
+class ArrayPath implements ArrayPathInterface
+{
 
     /**
-     * Get the generated array
-     *
-     * @param array $array
-     *
-     * $array Example :
+     * @var array
+     */
+    private $path = [];
+
+    /**
+     *   $array Example :
      *   $array = [
      *       'module' => [
      *           'Application' => [
@@ -59,13 +59,24 @@ class Path {
      *           ],
      *       ]
      *   ];
+     *
+     * @param array $path
+     */
+    public function __construct(array $path)
+    {
+        $this->path = $path;
+        $this->_generate($this->path);
+    }
+
+    /**
+     * Get the generated array
+     *
+     *
      *  @return array
      */
-    public function getPath(array $array)
+    public function getPath()
     {
-        $this->_generate($array);
-
-        return $this->_path;
+        return $this->path;
     }
 
 
@@ -81,17 +92,17 @@ class Path {
             if (is_array($value)) {
                 if (null !== $previous) {
                     $path = $previous . DIRECTORY_SEPARATOR . $key;
-                    $this->_path[] = $path;
+                    $this->path[] = $path;
                     $this->_generate($value, $path);
                 } else {
-                    $this->_path[] = $key;
+                    $this->path[] = $key;
                     $this->_generate($value, $key);
                 }
             } else {
                 if (null !== $previous) {
-                    $this->_path[] = $previous . DIRECTORY_SEPARATOR . $value;
+                    $this->path[] = $previous . DIRECTORY_SEPARATOR . $value;
                 } else {
-                    $this->_path[] = $value;
+                    $this->path[] = $value;
                 }
             }
         }
