@@ -64,8 +64,7 @@ class ArrayPath implements ArrayPathInterface
      */
     public function __construct(array $path)
     {
-        $this->path = $path;
-        $this->_generate($this->path);
+        $this->generate($path);
     }
 
     /**
@@ -86,17 +85,17 @@ class ArrayPath implements ArrayPathInterface
      * @param array $array
      * @param null $previous
      */
-    private function _generate(array $array, $previous = null)
+    private function generate(array $array, $previous = null)
     {
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 if (null !== $previous) {
                     $path = $previous . DIRECTORY_SEPARATOR . $key;
                     $this->path[] = $path;
-                    $this->_generate($value, $path);
+                    $this->generate($value, $path);
                 } else {
                     $this->path[] = $key;
-                    $this->_generate($value, $key);
+                    $this->generate($value, $key);
                 }
             } else {
                 if (null !== $previous) {
