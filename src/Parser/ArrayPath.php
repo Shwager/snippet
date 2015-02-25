@@ -97,7 +97,7 @@ class ArrayPath implements ArrayPathInterface
                 // print all children
                 $this->previous = $previous . DIRECTORY_SEPARATOR . $iterator->key();
                 $this->path[] = $this->previous;
-                $this->splGenerate($iterator->getChildren(),  $this->previous);
+                $this->generate($iterator->getChildren(),  $this->previous);
             }
             if (!$iterator->hasChildren()) {
                 $this->path[] = $this->previous . DIRECTORY_SEPARATOR . $iterator->current();
