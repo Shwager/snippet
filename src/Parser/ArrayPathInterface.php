@@ -1,6 +1,6 @@
 <?php
 /**
- * Parser class
+ * ArrayPath interface
  *
  * @category     ShwagerGenerator
  * @package      Parser
@@ -8,7 +8,6 @@
  * @author       Stefan Schwager
  * @copyright    Copyright (c) 2015 Stefan Schwager
  */
-
 
 namespace Shwager\Parser;
 

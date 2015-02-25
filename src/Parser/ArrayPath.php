@@ -22,7 +22,6 @@ namespace Shwager\Parser;
  */
 class ArrayPath implements ArrayPathInterface
 {
-
     /**
      * @var array
      */
@@ -82,12 +81,11 @@ class ArrayPath implements ArrayPathInterface
         return $this->path;
     }
 
-
     /**
      * Generate the Folder Structure from a given array
      *
      * @param \RecursiveArrayIterator $iterator
-     * @param null $previous
+     * @param null|string $previous
      */
     private function generate(\RecursiveArrayIterator $iterator, $previous = null)
     {
@@ -97,8 +95,7 @@ class ArrayPath implements ArrayPathInterface
                 $this->previous = $previous . DIRECTORY_SEPARATOR . $iterator->key();
                 $this->path[] = $this->previous;
                 $this->generate($iterator->getChildren(),  $this->previous);
-            }
-            if (!$iterator->hasChildren()) {
+            } else {
                 $this->path[] = $this->previous . DIRECTORY_SEPARATOR . $iterator->current();
             }
 
