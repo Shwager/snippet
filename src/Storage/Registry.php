@@ -10,10 +10,6 @@
 
 namespace Shwager\Storage;
 
-/**
- *
- */
-use Shwager\Common\SingltonTrait;
 
 /**
  * Class Registry
@@ -21,7 +17,7 @@ use Shwager\Common\SingltonTrait;
  */
 class Registry implements RegistryInterface
 {
-    use SingletonTrait;
+    use \Shwager\Common\SingletonTrait;
 
     protected $values = [];
 
@@ -42,7 +38,7 @@ class Registry implements RegistryInterface
     {
         if (!isset($this->values[$key])) {
             throw new \InvalidArgumentException(
-                sprintf('The given configuration key ( %s ), does not exist.', mb_strtoupper($key))
+                sprintf('The given configuration key ( %s ), does not exist.', $key)
             );
         }
 

@@ -16,7 +16,7 @@ namespace Shwager\Common;
  */
 trait SingletonTrait {
     /**
-     * @var SingletonTrait
+     * @var
      */
     private static $instance;
 
