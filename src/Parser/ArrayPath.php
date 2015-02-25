@@ -27,6 +27,10 @@ class ArrayPath implements ArrayPathInterface
      * @var array
      */
     private $path = [];
+    /**
+     * @var string
+     */
+    private $previous;
 
     /**
      *   $array Example :
@@ -64,7 +68,8 @@ class ArrayPath implements ArrayPathInterface
      */
     public function __construct(array $path)
     {
-        $this->generate($path);
+        $this->generate(new \RecursiveArrayIterator($path));
+
     }
 
     /**
@@ -80,30 +85,25 @@ class ArrayPath implements ArrayPathInterface
 
 
     /**
-     * Generate
+     * Generate the Folder Structure from a given array
      *
-     * @param array $array
+     * @param \RecursiveArrayIterator $iterator
      * @param null $previous
      */
-    private function generate(array $array, $previous = null)
+    private function generate(\RecursiveArrayIterator $iterator, $previous = null)
     {
-        foreach ($array as $key => $value) {
-            if (is_array($value)) {
-                if (null !== $previous) {
-                    $path = $previous . DIRECTORY_SEPARATOR . $key;
-                    $this->path[] = $path;
-                    $this->generate($value, $path);
-                } else {
-                    $this->path[] = $key;
-                    $this->generate($value, $key);
-                }
-            } else {
-                if (null !== $previous) {
-                    $this->path[] = $previous . DIRECTORY_SEPARATOR . $value;
-                } else {
-                    $this->path[] = $value;
-                }
+        while ($iterator->valid()) {
+            if ($iterator->hasChildren()) {
+                // print all children
+                $this->previous = $previous . DIRECTORY_SEPARATOR . $iterator->key();
+                $this->path[] = $this->previous;
+                $this->splGenerate($iterator->getChildren(),  $this->previous);
             }
+            if (!$iterator->hasChildren()) {
+                $this->path[] = $this->previous . DIRECTORY_SEPARATOR . $iterator->current();
+            }
+
+            $iterator->next();
         }
     }
 }
