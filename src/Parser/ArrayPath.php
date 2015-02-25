@@ -69,7 +69,6 @@ class ArrayPath implements ArrayPathInterface
     public function __construct(array $path)
     {
         $this->generate(new \RecursiveArrayIterator($path));
-
     }
 
     /**
