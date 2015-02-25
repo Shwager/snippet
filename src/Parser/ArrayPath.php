@@ -91,12 +91,18 @@ class ArrayPath implements ArrayPathInterface
     {
         while ($iterator->valid()) {
             if ($iterator->hasChildren()) {
-                // print all children
-                $this->previous = $previous . DIRECTORY_SEPARATOR . $iterator->key();
+                // print all children;
+                // For the root directory we don't need a directory separator
+                $this->previous = $previous === null
+                    ? $iterator->key()
+                    : $previous . DIRECTORY_SEPARATOR . $iterator->key();
                 $this->path[] = $this->previous;
                 $this->generate($iterator->getChildren(),  $this->previous);
             } else {
-                $this->path[] = $this->previous . DIRECTORY_SEPARATOR . $iterator->current();
+                // For the root directory we don't need a directory separator
+                $this->path[] = $previous === null
+                    ? $iterator->current()
+                    : $this->previous . DIRECTORY_SEPARATOR . $iterator->current();
             }
 
             $iterator->next();

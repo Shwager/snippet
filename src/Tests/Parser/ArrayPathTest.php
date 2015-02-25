@@ -59,33 +59,34 @@ class ArrayPathTest extends \PHPUnit_Framework_TestCase
     private function getExpectedValues()
     {
         return [
-            '/module',
-            '/module/Application',
-            '/module/Application/src',
-            '/module/Application/src/Application',
-            '/module/Application/src/Application/Controller',
-            '/module/Application/src/Application/Parser',
-            '/module/Application/config',
-            '/module/Application/config/last',
-            '/module/Application/view',
-            '/module/Application/view/error',
-            '/module/Application/view/layout',
-            '/module/Application/view/application',
-            '/module/Application/view/application/index',
-            '/module/Application/view/application/contact',
-            '/module/Application/view/partials',
-            '/module/Application/view/partials/fii',
-            '/module/Application/view/partials/b-i',
-            '/module2',
-            '/module2/Shwager2',
-            '/module2/Shwager2/src2',
-            '/module2/Shwager2/config2',
-            '/module2/Shwager2/config2/last2',
-            '/module2/Shwager2/view2',
-            '/module2/Shwager2/view2/last2'
+            'module',
+            'module/Application',
+            'module/Application/src',
+            'module/Application/src/Application',
+            'module/Application/src/Application/Controller',
+            'module/Application/src/Application/Parser',
+            'module/Application/config',
+            'module/Application/config/last',
+            'module/Application/view',
+            'module/Application/view/error',
+            'module/Application/view/layout',
+            'module/Application/view/application',
+            'module/Application/view/application/index',
+            'module/Application/view/application/contact',
+            'module/Application/view/partials',
+            'module/Application/view/partials/fii',
+            'module/Application/view/partials/b-i',
+            'module2',
+            'module2/Shwager2',
+            'module2/Shwager2/src2',
+            'module2/Shwager2/config2',
+            'module2/Shwager2/config2/last2',
+            'module2/Shwager2/view2',
+            'module2/Shwager2/view2/last2',
+            'base'
         ];
     }
-    
+
     /**
      * Get the structure arguments
      *
@@ -120,7 +121,8 @@ class ArrayPathTest extends \PHPUnit_Framework_TestCase
                     'config2' => ['last2'],
                     'view2' => ['last2'],
                 ],
-            ]
+            ],
+            'base'
         ];
     }
 }
